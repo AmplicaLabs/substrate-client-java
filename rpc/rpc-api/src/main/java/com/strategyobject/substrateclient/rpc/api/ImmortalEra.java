@@ -9,8 +9,5 @@ import lombok.Getter;
 @ScaleWriter
 public class ImmortalEra implements Era {
     @Scale(ScaleType.CompactInteger.class)
-    private final int calPeriod = 0;
-
-    @Scale(ScaleType.CompactInteger.class)
-    private final int quantizedPhase = 0;
+    private final int encoded = 0;
 }
