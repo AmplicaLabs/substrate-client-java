@@ -16,15 +16,16 @@ public class SignedAdditionalExtra implements AdditionalExtra {
     private final long txVersion;
     private final BlockHash genesis;
     private final BlockHash eraBlock;
-    private final MetadataHashMode mode;
+    // TODO: Convert to a real Optional and support the actual MetadataHash
+    @Scale(ScaleType.U8.class)
+    private final int metadataHash = 0;
 
     public SignedAdditionalExtra(long specVersion, long txVersion, @NonNull BlockHash genesis, @NonNull BlockHash eraBlock) {
         this.specVersion = (int) specVersion;
         this.txVersion = (int) txVersion;
         this.genesis = genesis;
         this.eraBlock = eraBlock;
-        // Currently not supporting metadata hash
-        // TODO: This should ONLY be here if this is hitting a chain that uses the CheckMetadataHash extension
-        this.mode = MetadataHashMode.DISABLED;
+        // Set the metadata hash if we use it
+        // this.metadataHash = 0;
     }
 }

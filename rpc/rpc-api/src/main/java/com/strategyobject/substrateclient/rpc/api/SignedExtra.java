@@ -25,6 +25,8 @@ public class SignedExtra<E extends Era> implements Extra, SignedExtension {
     private final Index nonce;
     @Scale(ScaleType.CompactBigInteger.class)
     private final BigInteger tip;
+    // TODO: Support Metadata Hash
+    private final MetadataHashMode mode = MetadataHashMode.DISABLED;
 
     @Override
     public AdditionalExtra getAdditionalExtra() {
