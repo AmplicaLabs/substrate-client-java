@@ -29,6 +29,8 @@ public class SignedExtraWriter<E extends Era> implements ScaleWriter<SignedExtra
         ((ScaleWriter<E>) dispatcher).write(value.getEra(), stream);
         ((ScaleWriter<Index>) registry.resolve(Index.class)).write(value.getNonce(), stream);
         ((ScaleWriter<BigInteger>) registry.resolve(ScaleType.CompactBigInteger.class)).write(value.getTip(), stream);
-        ((ScaleWriter)registry.resolve(MetadataHashMode.class)).write(value.getMode(), stream);
+        if (value.isHasMetadataHashSupport()) {
+          ((ScaleWriter)registry.resolve(MetadataHashMode.class)).write(value.getMode(), stream);
+        }
     }
 }

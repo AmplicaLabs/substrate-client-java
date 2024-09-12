@@ -152,7 +152,7 @@ class AuthorTests {
         val tip = 0;
         val call = new BalanceTransfer(moduleIndex, callIndex, AddressId.fromBytes(bobKeyPair().asPublicKey().getBytes()), BigInteger.valueOf(10));
 
-        val extra = new SignedExtra<>(specVersion, txVersion, genesis, genesis, new ImmortalEra(), Index.of(nonce), BigInteger.valueOf(tip));
+        val extra = new SignedExtra<>(specVersion, txVersion, genesis, genesis, new ImmortalEra(), Index.of(nonce), BigInteger.valueOf(tip), true);
         val signedPayload = ScaleUtils.toBytes(
                 new SignedPayload<>(call, extra),
                 TestsHelper.SCALE_WRITER_REGISTRY,

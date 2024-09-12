@@ -25,7 +25,7 @@ public class TestsHelper {
         registerAnnotatedFrom("com.strategyobject.substrateclient");
     }};
 
-    static final ScaleWriterRegistry SCALE_WRITER_REGISTRY = new ScaleWriterRegistry() {{
+    public static final ScaleWriterRegistry SCALE_WRITER_REGISTRY = new ScaleWriterRegistry() {{
         registerAnnotatedFrom("com.strategyobject.substrateclient");
     }};
 
