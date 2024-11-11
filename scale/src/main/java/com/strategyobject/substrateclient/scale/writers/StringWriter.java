@@ -14,7 +14,8 @@ public class StringWriter implements ScaleWriter<String> {
     public void write(@NonNull String value, @NonNull OutputStream stream, ScaleWriter<?>... writers) throws IOException {
         Preconditions.checkArgument(writers == null || writers.length == 0);
 
-        CompactIntegerWriter.writeInternal(value.length(), stream);
+        byte[] bytes = value.getBytes(StandardCharsets.UTF_8);
+        CompactIntegerWriter.writeInternal(bytes.length, stream);
         Streamer.writeBytes(value.getBytes(StandardCharsets.UTF_8), stream);
     }
 }
