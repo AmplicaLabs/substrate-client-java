@@ -87,19 +87,22 @@ Currently, we use [test containers](https://www.testcontainers.org/) and docker 
 
 ## Building Locally
 
-You will need to install
-
-### Install Prerequisites:
+### Install Prerequisites
 
 1. Install [asdf](https://asdf-vm.com/guide/getting-started.html) tools version manager. Make sure to follow instructions for your shell (e.g. ZSH, Fish, etc.) and package manager (e.g. Homebrew)
 
-   - Install the [Rust plugin](https://github.com/asdf-community/asdf-rust)
-   - Install the [Java plugin](https://github.com/halcyon/asdf-java)
+   - Install the [Rust plugin](https://github.com/asdf-community/asdf-rust).
+   - Install the [Java plugin](https://github.com/halcyon/asdf-java).
    - Then, run `asdf install` at the root of the repo to install tools listed in `/.tool-versions`.
+   - Verify your local Java version matches what's in /.tool-versions. If they don't match check the `$PATH` env var to ensure `~/.asdf/shims` directory has precedence over others.
+     ```sh
+     java -version
+     cat .tool-versions
+     ```
 
 1. Install [Docker Desktop](https://www.docker.com/products/docker-desktop/), an application for managing Docker containers and images along with docker CLI tools.
 
-   _Note: If using fish shell you'd need to update the $PATH manually with this command, so `docker` executables can be found:_
+   _Note: If using fish shell you'd need to update the $PATH manually with this command, so `docker` executables can be found and restart the shell:_
 
    ```sh
    set -U fish_user_paths /Applications/Docker.app/Contents/Resources/bin $fish_user_paths
@@ -110,10 +113,11 @@ You will need to install
 1. Build project.
 
    ```sh
-   ./gradlew build
+   ./gradlew clean build
    ```
 
-1. Publish compile artifacts to the local Maven cache, so other apps (e.g. Custodial Wallet) can consume it.
+1. Publish compile artifacts to the local Maven cache, so other apps (e.g. saas-frequency-client, Custodial Wallet) can consume it.
+
    ```sh
    ./gradlew publishToMavenLocal
    ```
